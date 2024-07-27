@@ -30,6 +30,7 @@ import type { Category } from "@/server/db/schema";
 import { addProductAction } from "./addProductAction";
 import { toast } from "sonner";
 import { formatPrice } from "@/lib/utils";
+import SubmitButton from "@/components/shared/submit-button";
 export default function AddProcutForm({
   categories,
 }: {
@@ -170,9 +171,7 @@ export default function AddProcutForm({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
+            <SubmitButton className="w-full">Add Product</SubmitButton>
           </form>
         </Form>
       </Card>
