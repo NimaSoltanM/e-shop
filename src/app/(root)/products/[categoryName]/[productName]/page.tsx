@@ -10,11 +10,15 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface props {
-  params: { productName: string };
+  params: Promise<{ productName: string }>;
 }
-export default async function ProductDetailPage({
-  params: { productName },
-}: props) {
+export default async function ProductDetailPage(props0: props) {
+  const params = await props0.params;
+
+  const {
+    productName
+  } = params;
+
   const deslugifiedProductName = deSlugifyString(productName);
 
   const product = await db.query.products.findFirst({

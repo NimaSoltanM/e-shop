@@ -1,4 +1,4 @@
-import ProductCard from "@/components/shared/products/product-card";
+import ProductCard from "@/features/products/components/product-card";
 import { deSlugifyString } from "@/lib/utils";
 import { db } from "@/server/db";
 import { categories } from "@/server/db/schema";

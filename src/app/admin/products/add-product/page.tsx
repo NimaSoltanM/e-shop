@@ -1,5 +1,5 @@
 import { db } from "@/server/db";
-import AddProcutForm from "./addProcutForm";
+import AddProcutForm from "../../../../features/products/components/product-form";
 import Container from "@/components/ui/container";
 
 export default async function AddProcutPage() {

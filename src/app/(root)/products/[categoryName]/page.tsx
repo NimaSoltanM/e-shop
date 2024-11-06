@@ -1,15 +1,16 @@
 import Container from "@/components/ui/container";
-import ProductsGrid from "./_components/products-grid";
+import ProductsGrid from "../../../../features/products/components/products-grid";
 import { Suspense } from "react";
-import ProductCardsSkeleton from "@/components/shared/products/product-cards-skeleton";
-import FilterSection from "./_components/filter-section";
-import MobileFilter from "./_components/mobile-filter";
+import ProductCardsSkeleton from "@/features/products/components/product-cards-skeleton";
+import FilterSection from "../../../../features/products/components/filter-section";
+import MobileFilter from "../../../../features/products/components/mobile-filter";
 
 type Props = {
-  params: { categoryName: string };
+  params: Promise<{ categoryName: string }>;
 };
 
-export default async function ProductsPage({ params }: Props) {
+export default async function ProductsPage(props: Props) {
+  const params = await props.params;
   return (
     <Container>
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-4 lg:gap-12">

@@ -1,16 +1,16 @@
 "use server";
 
-import { addProcuctSchema } from "@/schemas/products";
 import { db } from "@/server/db";
 import { products } from "@/server/db/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { ProductSchema } from "../schemas";
 
 export const addProductAction = async (
-  values: z.infer<typeof addProcuctSchema>,
+  values: z.infer<typeof ProductSchema>,
 ) => {
-  const validatedFields = addProcuctSchema.safeParse(values);
+  const validatedFields = ProductSchema.safeParse(values);
 
   if (validatedFields.error) {
     return { error: "invalid fields" };

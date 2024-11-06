@@ -1,6 +1,5 @@
 "use client";
 
-import { addProcuctSchema } from "@/schemas/products";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -27,28 +26,20 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import type { Category } from "@/server/db/schema";
-import { addProductAction } from "./addProductAction";
+import { addProductAction } from "../actions/addProductAction";
 import { toast } from "sonner";
 import { formatPrice } from "@/lib/utils";
-import SubmitButton from "@/components/shared/submit-button";
+import { ProductSchema } from "../schemas";
 export default function AddProcutForm({
   categories,
 }: {
   categories: Category[];
 }) {
-  const form = useForm<z.infer<typeof addProcuctSchema>>({
-    resolver: zodResolver(addProcuctSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      imageUrl: "",
-      stock: 0,
-      price: 0,
-      categoryId: 0,
-    },
+  const form = useForm<z.infer<typeof ProductSchema>>({
+    resolver: zodResolver(ProductSchema),
   });
 
-  async function onSubmit(values: z.infer<typeof addProcuctSchema>) {
+  async function onSubmit(values: z.infer<typeof ProductSchema>) {
     const res = await addProductAction(values);
 
     if (res?.error) {
@@ -171,7 +162,7 @@ export default function AddProcutForm({
                 </FormItem>
               )}
             />
-            <SubmitButton className="w-full">Add Product</SubmitButton>
+            <Button className="w-full">Add Product</Button>
           </form>
         </Form>
       </Card>
